@@ -1,0 +1,6 @@
+---
+- hosts: all
+  roles:
+    - role: wait-for-connection
+    - role: configure-nfs-client
+    - role: add-worker-ips-to-hosts-file

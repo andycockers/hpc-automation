@@ -1,0 +1,18 @@
+---
+- hosts: all
+  roles:
+  - role: apt-update
+  - role: install-zip
+  - role: install-unzip
+  - role: install-git
+  - role: install-make
+  - role: install-gfortran
+  - role: install-nfs-kernel-server
+  - role: install-curl
+  - role: install-wget
+  - role: install-nano
+  - role: add-user
+  - role: copy-ssh-keypair
+  - role: install-openmpi
+
+

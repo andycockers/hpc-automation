@@ -1,0 +1,15 @@
+- name: Download and untar Quantum Espresso to /mnt/share
+  unarchive:
+    src: https://github.com/QEF/q-e/releases/download/qe-6.7.0/qe-6.7-ReleasePack.tgz
+    dest: /mnt/share
+    remote_src: yes
+
+- name: Configure QE
+  shell: ./configure
+  args:
+    chdir: /mnt/share/qe-6.7
+
+- name: Make pw
+  shell: make pw
+  args:
+    chdir: /mnt/share/qe-6.7

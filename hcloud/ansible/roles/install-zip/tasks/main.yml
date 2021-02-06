@@ -1,0 +1,3 @@
+- name: Install Zip
+  package:
+    name: zip

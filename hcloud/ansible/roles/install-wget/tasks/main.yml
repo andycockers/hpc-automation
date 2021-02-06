@@ -1,0 +1,3 @@
+- name: Install Wget
+  package:
+    name: wget

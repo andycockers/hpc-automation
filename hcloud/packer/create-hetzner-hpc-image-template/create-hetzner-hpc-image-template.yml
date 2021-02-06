@@ -1,0 +1,28 @@
+{
+    "variables": {
+      "token": "{{env `TOKEN`}}",
+      "location": "{{env `LOCATION`}}",
+      "server_type": "{{env `SERVER_TYPE`}}"
+    },
+  
+  "builders": [
+    {
+      "type": "hcloud",
+      "token": "{{ user `token` }}",
+      "image": "ubuntu-20.04",
+      "location": "{{ user `location` }}",
+      "server_type": "{{ user `server_type` }}",
+      "ssh_username": "root",
+      "snapshot_name": "hpc-image-template"
+      
+    }
+  ],
+  "provisioners": [
+    {
+      "type": "ansible",
+      "playbook_file": "../../ansible/create-hpc-node.yml",
+      "ansible_env_vars": ["ANSIBLE_PYTHON_INTERPRETER=/usr/bin/python3", "ANSIBLE_HOST_KEY_CHECKING=False", "ANSIBLE_VAULT_PASSWORD_FILE=password"]
+    }
+  ]
+  
+}

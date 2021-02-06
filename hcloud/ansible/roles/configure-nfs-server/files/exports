@@ -1,0 +1,1 @@
+#/mnt/share {{subnet_range}}(rw,sync,no_subtree_check)

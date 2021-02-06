@@ -1,0 +1,5 @@
+- name: Add a new user
+  user:
+    name: hpc
+    home: /home/hpc
+    shell: /bin/bash

@@ -1,0 +1,14 @@
+- name: Install openmpi-bin, libopenmpi-dev and libmpich-dev
+  package:
+    name: 
+      - openmpi-bin
+      - libopenmpi-dev
+      - libmpich-dev
+
+- name: add /usr/lib64/openmpi/bin to /home/hpc/.bashrc
+  lineinfile:
+    path: /home/hpc/.bashrc
+    line: export PATH=/usr/lib64/openmpi/bin:$PATH
+    owner: hpc
+    group: hpc
+    mode: 0744

@@ -1,0 +1,17 @@
+- name: Create a mountable directory if it does not exist
+  file:
+    path: /mnt/share
+    state: directory
+    owner: root
+    group: root
+    mode: '0777'
+
+#This is a third party module
+- name: Mount an NFS volume
+  ansible.posix.mount:
+    src: "{{MANAGER_IP}}"
+    path: /mnt/share
+    opts: rw,sync,hard,intr
+    state: mounted
+    fstype: nfs
+
