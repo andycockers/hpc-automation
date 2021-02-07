@@ -15,7 +15,7 @@ creation.
 
 ## Terraform (version 12.29)
 
-Terraform is used to provision and manage the HPC cluster.
+Terraform is used to provision and manage the HPC cluster VM's.
 
 ## JQ
 
