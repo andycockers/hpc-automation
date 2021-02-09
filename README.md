@@ -45,11 +45,25 @@ A Hetzner Cloud project. Once you have an account, create a new project.
 
 A Hetzner Cloud token. Instructions here: https://docs.hetzner.cloud/#getting-started
 
-An SSH key for the root user - add this to your project under "security".
+An SSH keypair for the root user - add the private key to your project under "security".
+
+An SSH keypair for the hpc user. The private and public key need to be encrypted using Ansible Vault.
+
+See https://docs.ansible.com/ansible/latest/user_guide/vault.html#encrypting-existing-files
+
+for instructions. Once the key pair has been encrypted, copy them to:
+
+ansible/roles/copy-ssh-keypair/files/hpc
+
+ansible/roles/copy-ssh-keypair/files/hpc.pub
+
+replacing the existing files.
+
+Keep a note of the password used to encrypt the files, it will be needed to decrypt them later.
 
 ## Using Packer to build the snapshot.
 
-These instrctions assume Packer and Ansible are already installed.
+These instrctions assume Packer and Ansible are already installed on the host machine (i.e. your laptop).
 
 In order to build the snapshot, three environment variables are required:
 
@@ -64,4 +78,18 @@ LOCATION can be one of hel1, nbg1 or fsn1
 SERVER_TYPE: at the time of writing, the following server types are available:
 
 ![Server Types](../main/docs/server_types.png)
+
+Example command:
+
+cd hcloud/packer/create-hetzner-hpc-image-template
+
+ansible-vault requires a file called 'password' that contains the vault password to decrypt the ssh keypair. 
+
+packer build -var LOCATION=hel1 -var SERVER_TYPE=cx11 TOKEN=the_api_token create-hetzner-hpc-image-template.yml
+
+Packer will create a temporary VM, install dependencies on that VM and then create a snapshot 
+
+from the VM called "hpc-image-template" with a label "type: hpc-image-template" in your project.
+
+This snapshot is then used by Terraform to create an HPC cluster.
 
