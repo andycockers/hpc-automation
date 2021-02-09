@@ -1,0 +1,4 @@
+- name: Add worker ip's to /mnt/share/hosts
+  ansible.builtin.shell:
+    cmd: ip -f inet addr show ens10 | sed -En -e 's/.*inet ([0-9.]+).*/\1/p' >> hosts
+    chdir: /mnt/share

@@ -29,7 +29,7 @@ continuity.
 
 ## Jenkins (optional)
 
-Jenskins is used to manage the building of Packer snapshots, deploying an HPC cluster and then running jobs 
+Jenkins is used to manage the building of Packer snapshots, deploying an HPC cluster and then running jobs 
 on the cluster. It is not a requirement to use Jenkins - it is possible to run all the jobs standalone. I have included
 the DSL Jenkins code as an example.
 
@@ -45,7 +45,7 @@ A Hetzner Cloud project. Once you have an account, create a new project.
 
 A Hetzner Cloud token. Instructions here: https://docs.hetzner.cloud/#getting-started
 
-An SSH key for the root user - add this to you project under "security".
+An SSH key for the root user - add this to your project under "security".
 
 ## Using Packer to build the snapshot.
 
@@ -56,4 +56,10 @@ In order to build the snapshot, three environment variables are required:
 TOKEN which equals the api token.
 LOCATION the Hetzner Cloud location.
 SERVER_TYPE the Hetzner Cloud server type.
+
+LOCATION can be one of hel1, nbg1 or fsn1
+
+SERVER_TYPE: at the time of writing, the following server types are available:
+
+![Server Types](../main/docs/server_types.png)
 
