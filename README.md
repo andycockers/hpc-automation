@@ -54,7 +54,9 @@ These instrctions assume Packer and Ansible are already installed.
 In order to build the snapshot, three environment variables are required:
 
 TOKEN which equals the api token.
+
 LOCATION the Hetzner Cloud location.
+
 SERVER_TYPE the Hetzner Cloud server type.
 
 LOCATION can be one of hel1, nbg1 or fsn1
